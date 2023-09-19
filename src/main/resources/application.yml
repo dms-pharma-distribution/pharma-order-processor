@@ -20,8 +20,8 @@ app:
   config:
     aws:
       region: ap-south-1
-      access-key-id: AKIAQ2FPGF2MFNQTBXOJ
-      secret-key-id: 5qv8DKGCHDnYQfRghtMAXEYijhk5npj/pqfjmMPX
+      access-key-id: 
+      secret-key-id: 
     message:
       queue:
         topic: order-queue
