@@ -15,37 +15,36 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
-@SpringBootApplication
 @EnableScheduling
+@SpringBootApplication
+
 public class PharmaOrderProcessorApplication {
-	
+
 	@Value("${app.config.aws.access-key-id}")
 	private String awsAccessKeyId;
 
 	@Value("${app.config.aws.secret-key-id}")
 	private String awsSecretKeyId;
-	
+
 	@Value("${app.config.aws.region}")
 	private String region;
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(PharmaOrderProcessorApplication.class, args);
 	}
-	
+
 	@Bean
 	public AmazonSQS amazonSQSClient() {
 		BasicAWSCredentials awsCredentials = new BasicAWSCredentials(awsAccessKeyId, awsSecretKeyId);
 		return AmazonSQSClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
 				.withRegion(region).build();
 	}
-	
+
 	@Bean
 	@Primary
 	public ObjectMapper objectMapper() {
-		return new ObjectMapper()
-				.registerModule(new ParameterNamesModule())
-				.registerModule(new JavaTimeModule());				  
-				//.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+		return new ObjectMapper().registerModule(new ParameterNamesModule()).registerModule(new JavaTimeModule());
+		// .setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 
 }

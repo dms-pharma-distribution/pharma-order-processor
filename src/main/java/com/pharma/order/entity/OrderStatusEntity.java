@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class OrderStatusEntity {
 	@Id
 	@Column(name = "status_code")
-	private Integer statusCode;
+	private int statusCode;
 
 	@Column(name = "description")
 	private String description;
@@ -18,17 +18,17 @@ public class OrderStatusEntity {
 	public OrderStatusEntity() {
 	}
 
-	public OrderStatusEntity(Integer statusCode, String description) {
+	public OrderStatusEntity(int statusCode, String description) {
 		super();
 		this.statusCode = statusCode;
 		this.description = description;
 	}
 
-	public Integer getStatusCode() {
+	public int getStatusCode() {
 		return statusCode;
 	}
 
-	public void setStatusCode(Integer statusCode) {
+	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
 

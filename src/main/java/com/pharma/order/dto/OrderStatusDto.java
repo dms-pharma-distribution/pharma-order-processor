@@ -1,22 +1,23 @@
 package com.pharma.order.dto;
 
 public class OrderStatusDto {
-	private Integer statusCode;
+	private int statusCode;
 	private String description;
 
 	public OrderStatusDto() {
 	}
 
-	public OrderStatusDto(Integer statusCode, String description) {
+	public OrderStatusDto(int statusCode, String description) {
+		super();
 		this.statusCode = statusCode;
 		this.description = description;
 	}
 
-	public Integer getStatusCode() {
+	public int getStatusCode() {
 		return statusCode;
 	}
 
-	public void setStatusCode(Integer statusCode) {
+	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
 

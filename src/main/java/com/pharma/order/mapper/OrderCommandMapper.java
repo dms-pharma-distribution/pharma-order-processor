@@ -2,6 +2,7 @@ package com.pharma.order.mapper;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,9 @@ public class OrderCommandMapper {
 	}
 
 	public OrderEntity mapToOrderEntity(OrderDto orderDto) {
+		if(orderDto.getOrderGuid()==null || orderDto.getOrderGuid().toString().isEmpty()) {
+			orderDto.setOrderGuid(UUID.randomUUID());
+		}
 		orderDto.setOrderCode(generateCodeIfNotExists(orderDto.getOrderCode()));
 		var orderEntity = orderMapper.toOrderEntity(orderDto);
 		var itemEntities = orderDto.getItemDtos().stream().map(itemDto -> mapToItemEntity(itemDto, orderEntity))
@@ -111,7 +115,7 @@ public class OrderCommandMapper {
 	}
 	
 	public Long generateCodeIfNotExists(Long existingCode) {
-		if (existingCode == null || existingCode == 0L) {
+		if (existingCode == null || existingCode == 0L || existingCode.longValue()==0) {
 			long min = 100_000L;
 			long max = 999_999L;
 			return min + (long) (Math.random() * (max - min + 1));

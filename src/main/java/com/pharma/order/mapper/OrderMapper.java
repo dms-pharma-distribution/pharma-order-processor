@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.UUID;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import com.pharma.order.dto.ItemDto;
 import com.pharma.order.dto.OrderDto;
@@ -21,7 +20,6 @@ import com.pharma.order.entity.SupplierRetailerEntity;
 
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
-	@Mapping(target = "orderGuid", source = "orderGuid", defaultValue = "java.util.UUID.randomUUID()")
 	OrderEntity toOrderEntity(OrderDto orderDto);
 
 	ItemEntity toItemEntity(ItemDto itemDto);
